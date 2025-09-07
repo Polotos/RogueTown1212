@@ -290,15 +290,15 @@ SUBSYSTEM_DEF(mapping)
 GLOBAL_LIST_EMPTY(the_station_areas)
 
 /datum/controller/subsystem/mapping/proc/generate_station_area_list()
-       var/list/station_areas_blacklist = typecacheof(list(/area/space, /area/mine, /area/ruin, /area/asteroid/nearstation))
-       for(var/area/A in GLOB.areas)
-               if (is_type_in_typecache(A, station_areas_blacklist))
-                       continue
-               if (!A.contents.len || !A.unique)
-                       continue
-               var/turf/picked = A.contents[1]
-               if (is_station_level(picked.z))
-                       GLOB.the_station_areas += A.type
+	var/list/station_areas_blacklist = typecacheof(list(/area/space, /area/mine, /area/ruin, /area/asteroid/nearstation))
+	for(var/area/A in GLOB.areas)
+		if (is_type_in_typecache(A, station_areas_blacklist))
+			continue
+		if (!A.contents.len || !A.unique)
+			continue
+		var/turf/picked = A.contents[1]
+		if (is_station_level(picked.z))
+			GLOB.the_station_areas += A.type
 
 	if(!GLOB.the_station_areas.len)
 		log_world("ERROR: Station areas list failed to generate!")
