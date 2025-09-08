@@ -149,11 +149,12 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   *  Adds the item to the GLOB.areas_by_type list based on area type
   */
 /area/New()
-	// This interacts with the map loader, so it needs to be set immediately
-	// rather than waiting for atoms to initialize.
-	if (unique)
-		GLOB.areas_by_type[type] = src
-	return ..()
+        // This interacts with the map loader, so it needs to be set immediately
+        // rather than waiting for atoms to initialize.
+        if (unique)
+                GLOB.areas_by_type[type] = src
+        GLOB.areas += src
+        return ..()
 
 /area/proc/can_craft_here()
 	return TRUE
@@ -245,10 +246,11 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * who am I to argue with old coders
   */
 /area/Destroy()
-	if(GLOB.areas_by_type[type] == src)
-		GLOB.areas_by_type[type] = null
-	STOP_PROCESSING(SSobj, src)
-	return ..()
+        if(GLOB.areas_by_type[type] == src)
+                GLOB.areas_by_type[type] = null
+        GLOB.areas -= src
+        STOP_PROCESSING(SSobj, src)
+        return ..()
 
 /**
   * Generate a power alert for this area

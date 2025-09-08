@@ -579,7 +579,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 /proc/repopulate_sorted_areas()
 	GLOB.sortedAreas = list()
 
-	for(var/area/A in world)
+	for(var/area/A in GLOB.areas)
 		GLOB.sortedAreas.Add(A)
 
 	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)
