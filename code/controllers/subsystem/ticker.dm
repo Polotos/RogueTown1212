@@ -562,21 +562,25 @@ SUBSYSTEM_DEF(ticker)
 		CHECK_TICK
 
 /datum/controller/subsystem/ticker/proc/select_ruler()
-	switch(rulertype)
-		if("King")
-			for(var/mob/living/carbon/human/K in world)
-				if(istype(K, /mob/living/carbon/human/dummy))
-					continue
-				if(K.job == "King")
-					rulermob = K
-					return
-		if("Queen")
-			for(var/mob/living/carbon/human/Q in world)
-				if(istype(Q, /mob/living/carbon/human/dummy))
-					continue
-				if(Q.job == "Queen")
-					rulermob = Q
-					return
+       var/list/players = list()
+       for(var/mob/living/carbon/human/H in GLOB.player_list)
+               if(istype(H, /mob/living/carbon/human/dummy))
+                       continue
+               if(!H.client)
+                       continue
+               players += H
+
+       switch(rulertype)
+               if("King")
+                       for(var/mob/living/carbon/human/K in players)
+                               if(K.job == "King")
+                                       rulermob = K
+                                       return
+               if("Queen")
+                       for(var/mob/living/carbon/human/Q in players)
+                               if(Q.job == "Queen")
+                                       rulermob = Q
+                                       return
 
 /datum/controller/subsystem/ticker/proc/collect_minds()
 	for(var/i in GLOB.new_player_list)
