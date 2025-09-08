@@ -46,8 +46,8 @@
 				L.roguepray(msg)
 				return
 			L.check_prayer(L,msg)
-			for(var/mob/living/L in hearers(2,src))
-				L.succumb_timer=world.time
+			for(var/mob/living/M in hearers(2, src))
+				M.succumb_timer = world.time
 
 /mob/living/proc/check_prayer(mob/living/L,message)
 	if(!L || !message)

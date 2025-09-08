@@ -144,11 +144,6 @@
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/turf/open/floor/rogue/grass)
 	neighborlay = "dirtedge"
-	var/muddy = FALSE
-	var/bloodiness = 20
-	var/obj/structure/closet/dirthole/holie
-	var/obj/machinery/crop/planted_crop
-	var/dirt_amt = 3
 
 /turf/open/floor/rogue/dirt
 	name = "dirt"
