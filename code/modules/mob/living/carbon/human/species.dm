@@ -2775,7 +2775,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			H.set_resting(FALSE, TRUE)
 
 /datum/species/proc/knockback(obj/item/I, mob/living/target, mob/living/user, nodmg)
-	. = ..()
 	if(!istype(I))
 		if(!target.resting)
 			var/chungus_str = target.STASTR
